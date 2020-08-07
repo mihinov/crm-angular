@@ -1,5 +1,3 @@
-const { use } = require("../routes/auth");
-
 const userName = 'mihail';
 const password = '123';
 const databaseName = 'crm-angular';

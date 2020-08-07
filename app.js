@@ -19,7 +19,7 @@ mongoose.connect(keys.mongoURI, {
     useCreateIndex: true
     })
     .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error(err))
+    .catch(err => console.error(err));
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
