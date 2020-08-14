@@ -20,7 +20,7 @@ module.exports.getById = async function(req, res) {
     }
 };
 
-module.exports.remove = function(req, res) {
+module.exports.remove = async function(req, res) {
     try {
         await new Category.remove({_id: req.params.id});
         await new Position.remove({category: req.params.id});
@@ -32,9 +32,16 @@ module.exports.remove = function(req, res) {
     }
 };
 
-module.exports.create = function(req, res) {
+module.exports.create = async function(req, res) {
+    console.log(req.user);
+    const category = new Category({
+        name: req.body.name,
+        user: req.user.id,
+        imageSrc: req.file ? req.file.path : ''
+    });
     try {
-
+        await category.save();
+        res.status(201).json(category);
     } catch(e) {
         errorHandler(res, e);
     }

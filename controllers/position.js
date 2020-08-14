@@ -1,7 +1,7 @@
 const Position = require('../models/Position');
 const errorHandler = require('../utils/errorHandler');
 
-module.exports.getByCategoryId = function(req, res) {
+module.exports.getByCategoryId = async function(req, res) {
     try {
         const positions = await Position.find({
             category: req.params.categoryId,
