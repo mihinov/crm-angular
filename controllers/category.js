@@ -33,7 +33,6 @@ module.exports.remove = async function(req, res) {
 };
 
 module.exports.create = async function(req, res) {
-    console.log(req);
     const category = new Category({
         name: req.body.name,
         user: req.user._id,
