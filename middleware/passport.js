@@ -4,8 +4,9 @@ const ExtractJwt = passportJwt.ExtractJwt;
 const keys = require('../config/keys');
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
+
 const options = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken,
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: keys.jwt
 };
 
