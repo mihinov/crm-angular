@@ -28,7 +28,7 @@ module.exports.login = async function(req, res) {
         }
     } else {
         // Пользователя нет, ошибка
-        res.status(400).json({
+        res.status(404).json({
             message: 'Пользователь с таким Email не найден'
         })
     }
