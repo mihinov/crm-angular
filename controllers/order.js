@@ -1,4 +1,4 @@
-const Order = requier('../models/Order');
+const Order = require('../models/Order');
 const errorHandler = require('../utils/errorHandler');
 
 module.exports.getAll = async function(req, res) {
