@@ -67,7 +67,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "client:build",
-            "port": 5000
+            "port": 4200
           },
           "configurations": {
             "production": {
