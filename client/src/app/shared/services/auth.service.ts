@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/internal/operators';
 
 import { User } from '../interfaces';
 
@@ -25,7 +26,7 @@ export class AuthService {
           localStorage.setItem('auth-token', token);
           this.setToken(token);
         })
-      )
+      );
   }
 
   setToken(token: string) {
