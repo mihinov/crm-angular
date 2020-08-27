@@ -17,7 +17,9 @@ export class AuthService {
 
   }
 
-  register() {}
+  register(): void {
+
+  }
 
   login(user: User): Observable<{token: string}> {
     return this.http.post<{token: string}>('/api/auth/login', user)
@@ -29,7 +31,7 @@ export class AuthService {
       );
   }
 
-  setToken(token: string) {
+  setToken(token: string): void {
     this.token = token;
   }
 
@@ -41,7 +43,7 @@ export class AuthService {
     return !!this.token;
   }
 
-  logout() {
+  logout(): void {
     this.setToken(null);
     localStorage.setItem('auth-token', null);
   }
