@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { MaterialService } from '../shared/services/material.service';
 
 @Component({
   selector: 'app-login-page',
@@ -25,28 +26,32 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     });
 
     this.route.queryParams.subscribe((params: Params) => {
-      if (params['registered']) {
-        // Теперь вы можете зайти в систему используя свои данные
-      } else if (params['accessDenied']) {
-        // Для начала авторизуйтесь в системе
+      if (params.registered) {
+        MaterialService.toast('Теперь вы можете зайти в систему используя свои данные');
+      } else if (params.accessDenied) {
+        MaterialService.toast('Для начала авторизуйтесь в системе');
       }
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.aSub) {
       this.aSub.unsubscribe();
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.form.disable();
     this.aSub = this.auth.login(this.form.value).subscribe(
       () => {
         console.log('login sucess');
         this.router.navigate(['/overview']);
       },
-      err => console.warn(err)
+      err => {
+        MaterialService.toast(err.error.message);
+        console.warn(err);
+        this.form.enable();
+      }
     );
   }
 
