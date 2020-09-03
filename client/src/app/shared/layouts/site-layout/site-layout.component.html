@@ -19,12 +19,20 @@
   <router-outlet></router-outlet>
 </main>
 
-<div class="fixed-action-btn">
+<div class="fixed-action-btn" #floating>
   <a class="btn-floating btn-large red">
       <i class="large material-icons">add</i>
   </a>
   <ul>
-      <li><a class="btn-floating green"><i class="material-icons">assignment</i></a></li>
-      <li><a class="btn-floating blue"><i class="material-icons">list</i></a></li>
+    <li>
+      <a class="btn-floating green" routerLink="/order">
+        <i class="material-icons">assignment</i>
+      </a>
+    </li>
+    <li>
+      <a class="btn-floating blue" routerLink="/categories/new">
+        <i class="material-icons">list</i>
+      </a>
+    </li>
   </ul>
 </div>

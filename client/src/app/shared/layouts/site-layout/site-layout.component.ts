@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { MaterialService } from '../../services/material.service';
 
 @Component({
   selector: 'app-site-layout',
   templateUrl: './site-layout.component.html',
   styleUrls: ['./site-layout.component.scss']
 })
-export class SiteLayoutComponent implements OnInit {
+export class SiteLayoutComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('floating') floatingRef: ElementRef;
 
   links = [
     {url: '/overview', name: 'Обзор'},
@@ -21,6 +24,10 @@ export class SiteLayoutComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    MaterialService.initializeFloatingButton(this.floatingRef);
   }
 
   logout(event: Event): void {
