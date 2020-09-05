@@ -18,19 +18,44 @@
     (ngSubmit)="onSubmit()"
   >
       <div class="input-field">
-          <input id="name" type="text">
-          <label for="name">Название</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            [ngClass]="{'invalid': form.get('name').invalid && form.get('name').touched}"
+          >
+          <label
+            for="name"
+
+          >Название</label>
+          <span
+            class="helper-text red-text"
+            *ngIf="form.get('name').invalid && form.get('name').touched"
+          >
+            <span
+              *ngIf="form.get('name').errors['required']"
+            >
+              Имя категории не может быть пустым
+            </span>
+          </span>
       </div>
 
       <div>
-          <button class="waves-effect waves-light btn orange lighten-2 mb2">
+          <button
+            type="button"
+            class="waves-effect waves-light btn orange lighten-2 mb2"
+          >
               <i class="material-icons left">backup</i>
               Загрузить изображение
           </button>
       </div>
 
       <div>
-          <button class="waves-effect waves-light btn">
+          <button
+            type="submit"
+            [disabled]="form.invalid || form.disabled"
+            class="waves-effect waves-light btn"
+          >
               Сохранить изменения
           </button>
       </div>
