@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CategoriesService } from '../../shared/services/categories.service';
 import { switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { MaterialService } from '../../shared/services/material.service';
 import { Category } from '../../shared/interfaces';
 
@@ -14,7 +14,7 @@ import { Category } from '../../shared/interfaces';
 })
 export class CategoriesFormComponent implements OnInit {
 
-  @ViewChild('input') inputRef: ElementRef;
+  @ViewChild('input[type="file"]') inputRef: ElementRef;
 
   isNew = true;
   image: File;
@@ -63,7 +63,7 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   triggerClick(): void {
-    this.inputRef.nativeElement.click();
+    // this.inputRef.nativeElement.click();
   }
 
   onFileUpload(event: Event): void {
@@ -80,9 +80,9 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   onSubmit(): void {
+    let obs$: Observable<Category>;
     this.form.disable();
 
-    let obs$;
     if (this.isNew) {
       obs$ = this.categoriesService.create(this.form.value.name, this.image);
     } else {
@@ -91,6 +91,7 @@ export class CategoriesFormComponent implements OnInit {
 
     obs$.subscribe(
       (category: Category) => {
+        console.log('Произошёл onSubmit');
         this.category = category;
         MaterialService.toast('Изменения сохранения');
         this.form.enable();
