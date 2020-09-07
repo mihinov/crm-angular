@@ -14,7 +14,7 @@ import { Category } from '../../shared/interfaces';
 })
 export class CategoriesFormComponent implements OnInit {
 
-  @ViewChild('input[type="file"]') inputRef: ElementRef;
+  @ViewChild('input') inputRef: ElementRef;
 
   isNew = true;
   image: File;
