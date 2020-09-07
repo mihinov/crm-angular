@@ -63,7 +63,7 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   triggerClick(): void {
-    // this.inputRef.nativeElement.click();
+    this.inputRef.nativeElement.click();
   }
 
   onFileUpload(event: Event): void {
