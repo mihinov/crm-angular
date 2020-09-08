@@ -3,6 +3,10 @@ export interface User {
   password: string;
 }
 
+export interface Message {
+  message: string;
+}
+
 export interface Category {
   name: string;
   imageSrc?: string;

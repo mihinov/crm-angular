@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CategoriesService } from '../../shared/services/categories.service';
 import { switchMap } from 'rxjs/operators';
@@ -23,7 +23,8 @@ export class CategoriesFormComponent implements OnInit {
   category: Category;
 
   constructor(private route: ActivatedRoute,
-              private categoriesService: CategoriesService) { }
+              private categoriesService: CategoriesService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -66,6 +67,20 @@ export class CategoriesFormComponent implements OnInit {
     this.inputRef.nativeElement.click();
   }
 
+  deleteCategory(): void {
+    const decision = window.confirm(`Вы уверены, что хотите удалить категорию ${this.category.name}`);
+
+    if (decision) {
+      this.categoriesService.delete(this.category._id)
+        .subscribe(
+          response => MaterialService.toast(response.message),
+          err => MaterialService.toast(err.error.message),
+          () => this.router.navigate(['/categories'])
+        );
+    }
+
+  }
+
   onFileUpload(event: Event): void {
     const target = event.target as HTMLInputElement;
     const file = target.files[0];
@@ -91,7 +106,6 @@ export class CategoriesFormComponent implements OnInit {
 
     obs$.subscribe(
       (category: Category) => {
-        console.log('Произошёл onSubmit');
         this.category = category;
         MaterialService.toast('Изменения сохранения');
         this.form.enable();
