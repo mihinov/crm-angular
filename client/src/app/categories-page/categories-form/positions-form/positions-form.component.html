@@ -2,25 +2,43 @@
   <div class="col s12">
       <div class="page-subtitle">
           <h4>Позиции:</h4>
-          <button class="waves-effect waves-light btn grey darken-1 btn-small modal-trigger" data-target="create-modal">
+          <button
+            class="waves-effect waves-light btn grey darken-1 btn-small"
+            (click)="onAddPosition()"
+          >
               Добавить позицию
           </button>
       </div>
 
-      <div class="collection">
-          <a class="collection-item collection-item-icon">
-              <span>
-                  Кофе <strong>20 руб.</strong>
-              </span>
-              <span>
-                  <i class="material-icons">delete</i>
-              </span>
-          </a>
+    <div *ngIf="!loading else loader">
+
+      <div class="collection" *ngIf="positions.length !== 0; else empty">
+        <a
+          *ngFor="let position of positions"
+          class="collection-item collection-item-icon"
+          (click)="onSelectPosition(position)"
+        >
+            <span>
+                {{ position.name }} <strong>{{ position.cost }} руб.</strong>
+            </span>
+            <span>
+                <i class="material-icons">delete</i>
+            </span>
+        </a>
       </div>
+
+      <ng-template #empty>
+        <div class="center">В категории позиций нет</div>
+      </ng-template>
+
+    </div>
+
+    <ng-template #loader></ng-template>
+
   </div>
 </div>
 
-<div id="create-modal" class="modal">
+<div id="create-modal" class="modal" #modal>
   <div class="modal-content">
       <h4 class="mb1">Добавить позицию</h4>
       <div class="input-field">
@@ -33,7 +51,11 @@
       </div>
   </div>
   <div class="modal-footer">
-      <a href="#!" class="modal-action waves-effect waves-black btn-flat">Отмена</a>
-      <button class="modal-action btn waves-effect">Сохранить</button>
+      <button
+        type="button"
+        class="modal-action waves-effect waves-black btn-flat"
+        (click)="onCancel()"
+      >Отмена</button>
+      <button type="button" class="modal-action btn waves-effect">Сохранить</button>
   </div>
 </div>
