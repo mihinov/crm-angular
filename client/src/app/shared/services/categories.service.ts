@@ -35,9 +35,8 @@ export class CategoriesService {
 
     if (image) {
       fd.append('image', image, image.name);
-    } else {
-      fd.append('name', name);
     }
+    fd.append('name', name);
 
     return this.http.patch<Category>(`api/category/${id}`, fd);
   }

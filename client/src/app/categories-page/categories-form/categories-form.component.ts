@@ -101,6 +101,7 @@ export class CategoriesFormComponent implements OnInit {
     if (this.isNew) {
       obs$ = this.categoriesService.create(this.form.value.name, this.image);
     } else {
+      console.log(1);
       obs$ = this.categoriesService.update(this.category._id, this.form.value.name, this.image);
     }
 
