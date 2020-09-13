@@ -1,16 +1,22 @@
 <div class="page-title">
-  <h4>Заказ</h4>
+  <h4 *ngIf="isRoot">Заказ</h4>
+  <h4 *ngIf="!isRoot">
+      <a routerLink="/order">Заказ</a>
+      <i class="material-icons">keyboard_arrow_right</i>
+      Добавить продукцию
+  </h4>
   <button
-    class="waves-effect btn grey darken-1 modal-trigger"
-    data-target="explore-order"
+    class="waves-effect btn grey darken-1"
+    (click)="openModal()"
+    type="button"
   >
-    Завершить
+      Завершить
   </button>
 </div>
 
 <router-outlet></router-outlet>
 
-<div id="explore-order" class="modal modal-fixed-footer">
+<div #modal class="modal modal-fixed-footer">
   <div class="modal-content">
       <h4 class="mb1">Ваш заказ</h4>
       <table class="highlight">
@@ -50,7 +56,15 @@
       </div>
   </div>
   <div class="modal-footer">
-      <a href="#!" class="modal-action waves-effect waves-black btn-flat">Отмена</a>
-      <button class="modal-action btn waves-effect">Подтвердить</button>
+      <button
+        class="modal-action waves-effect waves-black btn-flat"
+        (click)="cancelModal()"
+        type="button"
+      >Отмена</button>
+      <button
+        class="modal-action btn waves-effect"
+        type="button"
+        (click)="onSubmit()"
+      >Подтвердить</button>
   </div>
 </div>
