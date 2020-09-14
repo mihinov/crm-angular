@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Position } from '../../shared/interfaces';
 import { map, switchMap } from 'rxjs/operators';
 import { OrderService } from '../order.service';
+import { MaterialService } from '../../shared/services/material.service';
 
 @Component({
   selector: 'app-order-positions',
@@ -17,7 +18,7 @@ export class OrderPositionsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private positionsService: PositionsService,
-              private order: OrderService) { }
+              public order: OrderService) { }
 
   ngOnInit(): void {
     this.positions$ = this.route.params
@@ -31,6 +32,7 @@ export class OrderPositionsComponent implements OnInit {
   }
 
   addToOrder(position: Position): void {
+    MaterialService.toast(`Добавлено: ${position.quantity} ${position.name}`);
     this.order.add(position);
   }
 
