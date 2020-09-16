@@ -10,13 +10,13 @@
   </thead>
 
   <tbody>
-    <tr>
-        <td>1</td>
-        <td>21.12.2000</td>
-        <td>14:21</td>
-        <td>12 211 руб.</td>
+    <tr *ngFor="let order of orders">
+        <td> {{ order.order }} </td>
+        <td> {{ order.date }} </td>
+        <td> {{ order.date }} </td>
+        <td> {{ order._id }} руб </td>
         <td>
-            <button class="btn btn-small modal-trigger grey darken-1" data-target="order-list">
+            <button class="btn btn-small grey darken-1">
                 <i class="material-icons">open_in_new</i>
             </button>
         </td>
@@ -24,7 +24,7 @@
   </tbody>
 </table>
 
-<div id="order-list" class="modal modal-fixed-footer">
+<div class="modal modal-fixed-footer">
   <div class="modal-content">
       <h4 class="mb1">Заказ №5</h4>
       <table class="highlight">

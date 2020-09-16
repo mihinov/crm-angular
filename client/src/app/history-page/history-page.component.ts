@@ -22,9 +22,14 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
   offset = 0;
   limit = STEP;
 
+  loading = false;
+  reloading = false;
+  noMoreOrders = false;
+
   constructor(private ordersSerice: OrdersService) { }
 
   ngOnInit(): void {
+    this.reloading = true;
     this.fetch();
   }
 
@@ -43,8 +48,17 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
       limit: this.limit
     };
     this.oSub = this.ordersSerice.fetch(params).subscribe(orders => {
-      this.orders = orders;
+      this.orders = this.orders.concat(orders);
+      this.noMoreOrders = orders.length < STEP;
+      this.loading = false;
+      this.reloading = false;
     });
+  }
+
+  loadMore(): void {
+    this.offset += STEP;
+    this.loading = true;
+    this.fetch();
   }
 
 }
