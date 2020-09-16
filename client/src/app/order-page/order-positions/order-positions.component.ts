@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Position } from '../../shared/interfaces';
 import { map, switchMap } from 'rxjs/operators';
 import { OrderService } from '../order.service';
-import { MaterialService } from '../../shared/services/material.service';
+import { MaterialService } from '../../shared/classes/material.service';
 
 @Component({
   selector: 'app-order-positions',

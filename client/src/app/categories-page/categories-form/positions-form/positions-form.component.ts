@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { PositionsService } from '../../../shared/services/positions.service';
 import { Position } from '../../../shared/interfaces';
-import { MaterialService, MaterialInstance } from '../../../shared/services/material.service';
+import { MaterialService, MaterialInstance } from '../../../shared/classes/material.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({

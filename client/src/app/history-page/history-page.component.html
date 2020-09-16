@@ -1,1 +1,23 @@
-<p>history-page works!</p>
+<div class="page-title">
+  <h4>История заказов</h4>
+  <button
+    class="btn btn-small"
+    data-tooltip="Открыть фильтр"
+    [ngClass]="{
+      'active': isFilterVisible
+    }"
+    (click)="isFilterVisible = !isFilterVisible"
+    data-position="left"
+    #tooltip
+  >
+      <i class="material-icons">filter_list</i>
+  </button>
+</div>
+
+<app-history-filter *ngIf="isFilterVisible"></app-history-filter>
+
+<app-history-list></app-history-list>
+
+<div class="center mb2">
+  <button class="btn waves-effect grey darken-1 btn-small">Загрузить еще</button>
+</div>

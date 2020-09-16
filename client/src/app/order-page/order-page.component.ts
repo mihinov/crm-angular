@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { MaterialInstance, MaterialService } from '../shared/services/material.service';
+import { MaterialInstance, MaterialService } from '../shared/classes/material.service';
 import { OrderService } from './order.service';
 import { OrderPosition, Order } from '../shared/interfaces';
-import { OrdersService } from '../shared/services/order.service';
+import { OrdersService } from '../shared/services/orders.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,7 +17,7 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('modal') modalRef: ElementRef;
   modal: MaterialInstance;
-  oSub$: Subscription;
+  oSub: Subscription;
   isRoot: boolean;
   pending = false;
 
@@ -39,8 +39,8 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     this.modal.destroy();
-    if (this.oSub$) {
-      this.oSub$.unsubscribe();
+    if (this.oSub) {
+      this.oSub.unsubscribe();
     }
   }
 
@@ -71,7 +71,7 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
       })
     };
 
-    this.oSub$ = this.ordersService.create(order).subscribe(
+    this.oSub = this.ordersService.create(order).subscribe(
       newOrder => {
         MaterialService.toast(`Заказ №${newOrder.order} был добавлен`);
         this.order.clear();

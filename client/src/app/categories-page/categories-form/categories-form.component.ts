@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CategoriesService } from '../../shared/services/categories.service';
 import { switchMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
-import { MaterialService } from '../../shared/services/material.service';
+import { MaterialService } from '../../shared/classes/material.service';
 import { Category } from '../../shared/interfaces';
 
 @Component({
