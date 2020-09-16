@@ -55,12 +55,13 @@
         class="modal-action waves-effect waves-black btn-flat"
         (click)="cancelModal()"
         type="button"
+        [disabled]="pending"
       >Отмена</button>
       <button
         class="modal-action btn waves-effect"
         type="button"
         (click)="onSubmit()"
-        [disabled]="order.list.length === 0"
+        [disabled]="order.list.length === 0 || pending"
       >Подтвердить</button>
   </div>
 </div>
