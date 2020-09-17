@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } fr
 import { MaterialInstance, MaterialService } from '../shared/classes/material.service';
 import { OrdersService } from '../shared/services/orders.service';
 import { Subscription } from 'rxjs';
-import { Order } from '../shared/interfaces';
+import { Order, Filter } from '../shared/interfaces';
 
 const STEP = 2;
 
@@ -16,8 +16,9 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('tooltip') tooltipRef: ElementRef;
   tooltip: MaterialInstance;
   oSub: Subscription;
-  isFilterVisible = false;
+  isFilterVisible = true;
   orders: Order[] = [];
+  filter: Filter = {};
 
   offset = 0;
   limit = STEP;
@@ -43,10 +44,14 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private fetch(): void {
-    const params = {
+    // const params = {
+    //   offset: this.offset,
+    //   limit: this.limit
+    // };
+    const params = Object.assign({}, this.filter, {
       offset: this.offset,
       limit: this.limit
-    };
+    });
     this.oSub = this.ordersSerice.fetch(params).subscribe(orders => {
       this.orders = this.orders.concat(orders);
       this.noMoreOrders = orders.length < STEP;
@@ -59,6 +64,18 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.offset += STEP;
     this.loading = true;
     this.fetch();
+  }
+
+  applyFilter(filter: Filter): void {
+    this.orders = [];
+    this.offset = 0;
+    this.filter = filter;
+    this.reloading = true;
+    this.fetch();
+  }
+
+  isFiltered(): boolean {
+    return Object.keys(this.filter).length !== 0;
   }
 
 }
