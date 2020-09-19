@@ -2,31 +2,22 @@
   "name": "crm-angular",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "scripts": {
-    "start": "node index",
-    "server": "nodemon index",
+    "start": "npm run start --prefix backend",
+    "server": "npm run server --prefix backend",
     "client-install": "npm install --prefix client",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" "
+    "dev": "npm run dev --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihinov/crm-angular.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "moment": "^2.27.0",
-    "mongoose": "^5.9.27",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.2",
-    "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0"
+  "bugs": {
+    "url": "https://github.com/mihinov/crm-angular/issues"
   },
-  "devDependencies": {
-    "concurrently": "^5.3.0",
-    "nodemon": "^2.0.4"
-  }
+  "homepage": "https://github.com/mihinov/crm-angular#readme"
 }
