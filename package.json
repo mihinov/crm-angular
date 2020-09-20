@@ -7,6 +7,9 @@
     "start": "npm run start --prefix backend",
     "server": "npm run server --prefix backend",
     "client": "npm run start --prefix client",
+    "client-install": "npm install --prefix client",
+    "backend-install": "npm install --prefix backend",
+    "all-install": "npm run backend-install && npm run client-install",
     "dev": "npm run dev --prefix backend"
   },
   "repository": {
