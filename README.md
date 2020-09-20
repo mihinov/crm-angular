@@ -17,7 +17,8 @@
 
 1. Склонировать репозиторий `git clone https://github.com/mihinov/crm-angular`
 2. Перейти в корень проекта `cd crm-angular`
-3. Установить все пакеты `npm run all-install`
+3. Установить зависимости для backend `npm run backend-install`
+4. Установить зависимости для client `npm run client-install`
 
 ----------
 
