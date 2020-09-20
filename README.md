@@ -14,7 +14,7 @@
     }
 </style>
 
-<div class="block">
+<div style="border: 2px solid tomato; display: inline-block; padding: 10px; margin: 10px 0 20px 0">
 
 <h2 style="border-bottom: none">Если у вас Windows:</h2>
 
@@ -28,7 +28,7 @@
 
 </div>
 
-<div class="block">
+<div style="border: 2px solid tomato; display: inline-block; padding: 10px; margin-bottom: 20px">
 <h2 style="border-bottom: none">Если у вас UNIX система (MAC, Linux):</h2>
 
 1. Склонировать репозиторий `git clone https://github.com/mihinov/crm-angular`
