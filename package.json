@@ -6,9 +6,6 @@
   "scripts": {
     "start": "npm run start --prefix backend",
     "server": "npm run server --prefix backend",
-    "client-install": "npm install --prefix client",
-    "backend-install": "npm install --prefix backend",
-    "all-install": "npm run client-install && npm run backend-install",
     "client": "npm run start --prefix client",
     "dev": "npm run dev --prefix backend"
   },
