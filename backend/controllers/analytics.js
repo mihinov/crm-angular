@@ -1,12 +1,11 @@
 const moment = require('moment');
 
 const Order = require('../models/Order');
-const order = require('../models/Order');
 const errorHandler = require('../utils/errorHandler');
 
 module.exports.overwiew = async function(req, res) {
     try {
-        const allOrders = await Order.find({user: req.user.id}).sort(1);
+        const allOrders = await Order.find({user: req.user.id}).sort({date: 1});
         const ordersMap = getOrdersMap(allOrders);
         const yesterdayOrders = ordersMap[moment().add(-1, 'd').format('DD.MM.YYYY')] || [];
         const yesterdayOrdersNumber = yesterdayOrders.length; // Кол-во заказов вчера
