@@ -3,8 +3,9 @@ const moment = require("moment");
 const Order = require("../models/Order");
 const errorHandler = require("../utils/errorHandler");
 
-module.exports.overwiew = async function (req, res) {
+module.exports.overview = async function (req, res) {
   try {
+    console.log(1);
     const allOrders = await Order.find({ user: req.user.id }).sort({ date: 1 });
     const ordersMap = getOrdersMap(allOrders);
     const yesterdayOrders =

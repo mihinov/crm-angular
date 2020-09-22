@@ -4,7 +4,7 @@ const router = express.Router();
 
 const controller = require('../controllers/analytics');
 
-router.get('/overwiew', passport.authenticate('jwt', {session: false}), controller.overwiew);
+router.get('/overview', passport.authenticate('jwt', {session: false}), controller.overview);
 router.get('/analytics', passport.authenticate('jwt', {session: false}), controller.analytics);
 
 module.exports = router;
