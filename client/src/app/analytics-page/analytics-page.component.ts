@@ -30,7 +30,7 @@ export class AnalyticsPageComponent implements AfterViewInit, OnDestroy {
     const orderConfig: any = {
       label: 'Заказы',
       color: 'rgb(54, 162, 235)'
-    }
+    };
 
     this.aSub = this.analyticsService.getAnalytics().subscribe((data: AnalyticsPage) => {
       this.average = data.average;
